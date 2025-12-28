@@ -20,53 +20,56 @@
         body { background-color: var(--primary-bg); color: var(--text-color); min-height: 100vh; display: flex; justify-content: center; padding: 40px 10px; overflow-x: hidden; }
         #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-        .wrapper { width: 100%; max-width: 900px; z-index: 1; }
-        .header-title { text-align: center; margin-bottom: 40px; font-weight: 800; font-size: 2.2rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .wrapper { width: 100%; max-width: 1000px; z-index: 1; }
+        .header-title { text-align: center; margin-bottom: 40px; font-weight: 800; font-size: 2.5rem; background: linear-gradient(to right, #00f2fe, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start; }
+        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } }
 
         .input-card {
-            background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 24px; border: 1px solid var(--glass-border); margin-bottom: 25px; backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 24px; border: 1px solid var(--glass-border); margin-bottom: 20px; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; height: 100%;
         }
-        .section-label { font-weight: 800; margin-bottom: 15px; display: block; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+        .section-label { font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
         .label-self { color: var(--accent-self); }
         .label-other { color: var(--accent-other); }
 
         input {
-            width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: 0.3s;
+            width: 100%; padding: 12px 15px; margin-bottom: 10px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: 0.3s;
         }
-        input:focus { border-color: white; background: rgba(0,0,0,0.5); }
-        .btn-add { width: 100%; padding: 14px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; margin-top: 5px; }
-        .add-self { background: var(--accent-self); color: #0f172a; }
-        .add-other { background: var(--accent-other); color: white; }
+        input:focus { border-color: rgba(255,255,255,0.5); background: rgba(0,0,0,0.5); }
+        
+        .btn-add { width: 100%; padding: 12px; border-radius: 12px; border: none; font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; margin-top: auto; }
+        .add-self { background: var(--accent-self); color: #0f172a; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2); }
+        .add-other { background: var(--accent-other); color: white; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2); }
+        .btn-add:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        .link-grid { display: flex; flex-direction: column; gap: 15px; }
+        .link-grid { display: flex; flex-direction: column; gap: 12px; }
         .link-btn-item {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; transition: all 0.3s ease; position: relative; overflow: hidden;
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 18px; transition: all 0.3s ease; position: relative; overflow: hidden;
         }
-        .link-btn-item:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); border-color: rgba(255,255,255,0.4); }
+        .link-btn-item:hover { background: rgba(255, 255, 255, 0.07); transform: translateX(5px); border-color: rgba(255,255,255,0.3); }
 
         .btn-content { display: flex; align-items: center; width: 100%; }
-        .main-link { flex-grow: 1; padding: 18px 20px; text-decoration: none; color: white; display: flex; flex-direction: column; overflow: hidden; }
-        .main-link strong { font-size: 0.95rem; margin-bottom: 4px; line-height: 1.4; }
-        .main-link span { font-size: 0.7rem; opacity: 0.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .main-link { flex-grow: 1; padding: 15px 20px; text-decoration: none; color: white; display: flex; flex-direction: column; overflow: hidden; }
+        .main-link strong { font-size: 0.9rem; margin-bottom: 4px; line-height: 1.4; color: #e2e8f0; }
+        .main-link span { font-size: 0.7rem; opacity: 0.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: monospace; }
 
-        .side-actions { display: flex; padding-right: 15px; gap: 8px; }
+        .side-actions { display: flex; padding-right: 15px; gap: 6px; }
         .icon-btn {
-            width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--glass-border); cursor: pointer; transition: 0.2s;
+            width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--glass-border); cursor: pointer; transition: 0.2s; font-size: 0.8rem;
         }
         .copy-btn:hover { background: #4ade80; color: #0f172a; border-color: #4ade80; }
         .del-btn:hover { background: #f43f5e; color: white; border-color: #f43f5e; }
 
         .sub-links {
-            background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--glass-border); padding: 12px 20px; display: flex; flex-direction: column; gap: 10px;
+            background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--glass-border); padding: 10px 15px; display: flex; flex-direction: column; gap: 8px;
         }
-        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 10px; font-size: 0.85rem; }
-        .sub-item span { color: #94a3b8; }
-        .sub-item .actions a { color: var(--accent-self); text-decoration: none; font-weight: 600; margin-right: 10px; }
-        .sub-item .actions button { background: none; border: none; color: #fff; cursor: pointer; opacity: 0.7; }
-        .sub-item .actions button:hover { opacity: 1; color: #4ade80; }
+        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 10px; font-size: 0.8rem; }
+        .sub-item span { color: #94a3b8; font-weight: 600; }
+        .sub-item .actions a { color: var(--accent-self); text-decoration: none; font-weight: 700; margin-right: 12px; font-size: 0.75rem; text-transform: uppercase; }
+        .sub-item .actions button { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; cursor: pointer; padding: 4px 8px; border-radius: 6px; font-size: 0.7rem; }
+        .sub-item .actions button:hover { background: #4ade80; color: #0f172a; }
     </style>
 </head>
 <body>
@@ -79,20 +82,20 @@
         <div class="container">
             <div class="column">
                 <div class="input-card">
-                    <span class="section-label label-self"><i class="fa-solid fa-wand-magic-sparkles"></i> Tự làm</span>
-                    <input type="text" id="titleSelf" placeholder="Tên nút...">
-                    <input type="text" id="urlSelf" placeholder="https://...">
-                    <button class="btn-add add-self" onclick="saveLink('self')">Thêm Nút Tự Làm</button>
+                    <span class="section-label label-self"><i class="fa-solid fa-wand-magic-sparkles"></i> Sản phẩm của Trung</span>
+                    <input type="text" id="titleSelf" placeholder="Tên sản phẩm mới...">
+                    <input type="text" id="urlSelf" placeholder="Dán link GitHub/Raw vào đây...">
+                    <button class="btn-add add-self" onclick="saveLink('self')">Thêm vào bộ sưu tập</button>
                 </div>
                 <div class="link-grid" id="listSelf"></div>
             </div>
 
             <div class="column">
                 <div class="input-card">
-                    <span class="section-label label-other"><i class="fa-solid fa-link"></i> Nguồn tham khảo</span>
-                    <input type="text" id="titleOther" placeholder="Tên nguồn...">
+                    <span class="section-label label-other"><i class="fa-solid fa-share-nodes"></i> Tài nguyên tham khảo</span>
+                    <input type="text" id="titleOther" placeholder="Tên tài nguyên...">
                     <input type="text" id="urlOther" placeholder="https://...">
-                    <button class="btn-add add-other" onclick="saveLink('other')">Thêm Nút Nguồn Khác</button>
+                    <button class="btn-add add-other" onclick="saveLink('other')">Lưu nguồn tham khảo</button>
                 </div>
                 <div class="link-grid" id="listOther"></div>
             </div>
@@ -116,22 +119,21 @@
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
         initCanvas(); for(let i=0; i<70; i++) particles.push(new Particle()); animate();
 
-        // Database setup
         const confLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.conf";
         const sgLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.sgmodule";
 
-        // Sử dụng btnLinksV5 để làm mới dữ liệu từ code
-        let db = JSON.parse(localStorage.getItem('btnLinksV5')) || {
+        // DATABASE CÂN BẰNG LẠI VỊ TRÍ
+        let db = JSON.parse(localStorage.getItem('btnLinksV6')) || {
             self: [
                 { title: "All in one (ProMax Config)", special: true },
-                { title: "YouTube Ads Block & Premium Unlocked (PicsArt, Lightroom, Spotify, Alight Motion, etc.)", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/All%20IN%20ONE(v1.0).sgmodule" },
-                { title: "YouTube Premium, Spotify Premium & Locket Gold", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
+                { title: "YouTube Ads Block & Premium Unlocked", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/All%20IN%20ONE(v1.0).sgmodule" },
+                { title: "YouTube, Spotify & Locket Gold Pack", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
             ],
             other: [
-                { title: "Spotify", url: "https://raw.githubusercontent.com/quocchienn/1in1/refs/heads/main/Spotify.module" },
-                { title: "Locket fix ios 26.0", url: "https://raw.githubusercontent.com/trickerchannel/shadowrocket/refs/heads/main/LocketGold.sgmodule" },
-                { title: "Config Youtube", url: "https://raw.githubusercontent.com/quocchienn/YouTubePIP/refs/heads/YouTube%2B%2B/YouTubefix3.conf" },
-                { title: "Locket", url: "https://raw.githubusercontent.com/quocchienn/lockcrack/refs/heads/module/Locket_Gold.sgmodule" }
+                { title: "Spotify Premium Module", url: "https://raw.githubusercontent.com/quocchienn/1in1/refs/heads/main/Spotify.module" },
+                { title: "Locket Gold (Fix iOS 26.0)", url: "https://raw.githubusercontent.com/trickerchannel/shadowrocket/refs/heads/main/LocketGold.sgmodule" },
+                { title: "Config Youtube PIP & Fix", url: "https://raw.githubusercontent.com/quocchienn/YouTubePIP/refs/heads/YouTube%2B%2B/YouTubefix3.conf" },
+                { title: "Locket Gold Crack Module", url: "https://raw.githubusercontent.com/quocchienn/lockcrack/refs/heads/module/Locket_Gold.sgmodule" }
             ]
         };
 
@@ -145,13 +147,13 @@
                             <div class="btn-content">
                                 <div class="main-link">
                                     <strong style="color:var(--accent-self)">${item.title}</strong>
-                                    <span>GitHub ProMax Config Files</span>
+                                    <span>Surge / Shadowrocket Config</span>
                                 </div>
-                                <div class="side-actions"><button class="icon-btn del-btn" onclick="del('${type}', ${index})"><i class="fa-solid fa-xmark"></i></button></div>
+                                <div class="side-actions"><button class="icon-btn del-btn" onclick="del('${type}', ${index})"><i class="fa-solid fa-trash-can"></i></button></div>
                             </div>
                             <div class="sub-links">
-                                <div class="sub-item"><span>File .conf</span><div class="actions"><a href="${confLink}" target="_blank">Mở</a><button onclick="copy('${confLink}', this)">Copy</button></div></div>
-                                <div class="sub-item"><span>File .sgmodule</span><div class="actions"><a href="${sgLink}" target="_blank">Mở</a><button onclick="copy('${sgLink}', this)">Copy</button></div></div>
+                                <div class="sub-item"><span>FILE .CONF</span><div class="actions"><a href="${confLink}" target="_blank">Mở</a><button onclick="copy('${confLink}', this)">Copy</button></div></div>
+                                <div class="sub-item"><span>FILE .SGMODULE</span><div class="actions"><a href="${sgLink}" target="_blank">Mở</a><button onclick="copy('${sgLink}', this)">Copy</button></div></div>
                             </div>
                         </div>`;
                     }
@@ -164,34 +166,39 @@
                             </a>
                             <div class="side-actions">
                                 <button class="icon-btn copy-btn" onclick="copy('${item.url}', this)"><i class="fa-regular fa-copy"></i></button>
-                                <button class="icon-btn del-btn" onclick="del('${type}', ${index})"><i class="fa-solid fa-xmark"></i></button>
+                                <button class="icon-btn del-btn" onclick="del('${type}', ${index})"><i class="fa-solid fa-trash-can"></i></button>
                             </div>
                         </div>
                     </div>`;
                 }).join('');
             });
-            localStorage.setItem('btnLinksV5', JSON.stringify(db));
+            localStorage.setItem('btnLinksV6', JSON.stringify(db));
         }
 
         function saveLink(type) {
             const tInput = document.getElementById(`title${type.charAt(0).toUpperCase() + type.slice(1)}`);
             const uInput = document.getElementById(`url${type.charAt(0).toUpperCase() + type.slice(1)}`);
-            if(!tInput.value) return alert("Nhập tên nút!");
+            if(!tInput.value) return alert("Vui lòng nhập tên!");
             db[type].unshift({ title: tInput.value, url: uInput.value || "#" });
             tInput.value = ''; uInput.value = '';
             render();
         }
 
         function del(type, index) {
-            if(confirm("Xóa nhé Trung?")) { db[type].splice(index, 1); render(); }
+            if(confirm("Xác nhận xóa mục này?")) { db[type].splice(index, 1); render(); }
         }
 
         function copy(text, btn) {
             navigator.clipboard.writeText(text);
             const original = btn.innerHTML;
-            btn.innerHTML = 'COPIED!';
-            btn.style.color = '#4ade80';
-            setTimeout(() => { btn.innerHTML = original; btn.style.color = ''; }, 1500);
+            btn.innerHTML = 'OK!';
+            btn.style.background = '#4ade80';
+            btn.style.color = '#0f172a';
+            setTimeout(() => { 
+                btn.innerHTML = original; 
+                btn.style.background = ''; 
+                btn.style.color = '';
+            }, 1000);
         }
 
         render();
