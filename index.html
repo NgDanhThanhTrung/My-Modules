@@ -13,6 +13,7 @@
             --glass-border: rgba(255, 255, 255, 0.1);
             --accent-self: #00f2fe;
             --accent-other: #a855f7;
+            --accent-warning: #fbbf24;
             --text-color: #f8fafc;
         }
 
@@ -22,14 +23,42 @@
 
         .wrapper { width: 100%; max-width: 650px; z-index: 1; }
         
-        /* Avatar & Profile */
-        .profile { text-align: center; margin-bottom: 40px; }
-        .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--accent-self); padding: 5px; margin-bottom: 15px; box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); }
-        .header-title { font-weight: 800; font-size: 2rem; background: linear-gradient(to right, #00f2fe, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
-        .header-sub { opacity: 0.6; font-size: 0.9rem; letter-spacing: 1px; }
+        .profile { text-align: center; margin-bottom: 30px; }
+        .header-title { font-weight: 800; font-size: 2.2rem; background: linear-gradient(to right, #00f2fe, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
+        .header-sub { opacity: 0.6; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Style cho phần Lưu ý */
+        .notice-card {
+            background: rgba(251, 191, 36, 0.05);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease-out;
+        }
+        .notice-title {
+            color: var(--accent-warning);
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .notice-content {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            list-style: none;
+        }
+        .notice-content li { margin-bottom: 5px; display: flex; gap: 8px; }
+        .notice-content li::before { content: "•"; color: var(--accent-warning); }
 
         .section-group { margin-bottom: 45px; animation: fadeInUp 0.8s ease-out forwards; }
         
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -51,7 +80,7 @@
 
         .btn-content { display: flex; align-items: center; width: 100%; }
         .main-link { flex-grow: 1; padding: 22px 28px; text-decoration: none; color: white; display: flex; flex-direction: column; overflow: hidden; }
-        .main-link strong { font-size: 1rem; margin-bottom: 6px; line-height: 1.4; letter-spacing: 0.5px; }
+        .main-link strong { font-size: 1rem; margin-bottom: 6px; line-height: 1.4; }
         .main-link span { font-size: 0.7rem; opacity: 0.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: monospace; }
 
         .side-actions { display: flex; padding-right: 20px; }
@@ -61,12 +90,10 @@
         }
         .copy-btn:hover { background: #4ade80; color: #0f172a; border-color: #4ade80; }
 
-        /* Đặc biệt cho phần All In One */
         .sub-links {
             background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--glass-border); padding: 15px 25px; display: flex; flex-direction: column; gap: 10px;
         }
-        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: rgba(255,255,255,0.04); border-radius: 15px; border: 1px solid transparent; transition: 0.3s; }
-        .sub-item:hover { border-color: var(--glass-border); background: rgba(255,255,255,0.07); }
+        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: rgba(255,255,255,0.04); border-radius: 15px; }
         .sub-item span { color: #94a3b8; font-size: 0.8rem; font-weight: 600; }
         .sub-item .actions a { color: var(--accent-self); text-decoration: none; font-weight: 700; margin-right: 15px; font-size: 0.8rem; text-transform: uppercase; }
         .sub-item .actions button { background: none; border: 1px solid rgba(0, 242, 254, 0.3); color: var(--accent-self); cursor: pointer; padding: 5px 12px; border-radius: 10px; font-size: 0.7rem; transition: 0.3s; }
@@ -83,23 +110,26 @@
             <p class="header-sub">PROXY CONFIG & MODULES</p>
         </div>
 
+        <div class="notice-card">
+            <div class="notice-title"><i class="fa-solid fa-circle-exclamation"></i> Lưu ý quan trọng</div>
+            <ul class="notice-content">
+                <li>Muốn sử dụng premium thì phải bật VPN trong ShadowRocket.</li>
+                <li>Không dùng nữa thì tắt đi để tránh hao pin và nóng máy.</li>
+            </ul>
+        </div>
+
         <div class="section-group">
-            <div class="section-label label-self">
-                <i class="fa-solid fa-star"></i> MY PRODUCTS
-            </div>
+            <div class="section-label label-self"><i class="fa-solid fa-star"></i> MY PRODUCTS</div>
             <div class="link-grid" id="listSelf"></div>
         </div>
 
         <div class="section-group">
-            <div class="section-label label-other">
-                <i class="fa-solid fa-layer-group"></i> REFERENCE RESOURCES
-            </div>
+            <div class="section-label label-other"><i class="fa-solid fa-layer-group"></i> REFERENCE RESOURCES</div>
             <div class="link-grid" id="listOther"></div>
         </div>
     </div>
 
     <script>
-        // Particles Background
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -118,7 +148,6 @@
         const confLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.conf";
         const sgLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.sgmodule";
 
-        // Dữ liệu cố định trong code
         const db = {
             self: [
                 { title: "All in one (ProMax Config)", special: true },
@@ -172,11 +201,7 @@
             navigator.clipboard.writeText(text);
             const original = btn.innerHTML;
             btn.innerHTML = 'COPIED';
-            if(btn.tagName === 'BUTTON') btn.style.borderColor = '#4ade80';
-            setTimeout(() => { 
-                btn.innerHTML = original; 
-                if(btn.tagName === 'BUTTON') btn.style.borderColor = '';
-            }, 1500);
+            setTimeout(() => { btn.innerHTML = original; }, 1500);
         }
 
         render();
