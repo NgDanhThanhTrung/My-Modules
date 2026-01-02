@@ -35,69 +35,75 @@
             padding: 20px;
             margin-bottom: 40px;
             backdrop-filter: blur(10px);
-            animation: fadeIn 1s ease-out;
         }
-        .notice-title {
-            color: var(--accent-warning);
-            font-weight: 800;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .notice-content {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: #cbd5e1;
-            list-style: none;
-        }
+        .notice-title { color: var(--accent-warning); font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; text-transform: uppercase; }
+        .notice-content { font-size: 0.85rem; line-height: 1.6; color: #cbd5e1; list-style: none; }
         .notice-content li { margin-bottom: 5px; display: flex; gap: 8px; }
         .notice-content li::before { content: "•"; color: var(--accent-warning); }
 
-        .section-group { margin-bottom: 45px; animation: fadeInUp 0.8s ease-out forwards; }
+        /* Accordion Styles */
+        .section-group { margin-bottom: 20px; }
         
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .section-header {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
         }
+        .section-header:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255,255,255,0.3); }
 
         .section-label { 
-            font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; 
-            gap: 12px; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; opacity: 0.9;
+            font-weight: 800; display: flex; align-items: center; 
+            gap: 12px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;
         }
         .label-self { color: var(--accent-self); }
         .label-other { color: var(--accent-other); }
 
-        .link-grid { display: flex; flex-direction: column; gap: 16px; }
-        .link-btn-item {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; backdrop-filter: blur(10px);
+        .chevron { transition: transform 0.3s ease; opacity: 0.5; }
+        .active .chevron { transform: rotate(180deg); opacity: 1; }
+
+        /* Nội dung ẩn hiện */
+        .link-grid { 
+            display: none; 
+            flex-direction: column; 
+            gap: 12px; 
+            padding: 15px 5px; 
+            animation: fadeIn 0.4s ease;
         }
-        .link-btn-item:hover { background: rgba(255, 255, 255, 0.08); transform: scale(1.02); border-color: rgba(255,255,255,0.4); }
+        .active + .link-grid { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Link Item Styles */
+        .link-btn-item {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 18px; 
+            overflow: hidden; transition: 0.3s;
+        }
+        .link-btn-item:hover { background: rgba(255, 255, 255, 0.05); transform: translateX(5px); }
 
         .btn-content { display: flex; align-items: center; width: 100%; }
-        .main-link { flex-grow: 1; padding: 22px 28px; text-decoration: none; color: white; display: flex; flex-direction: column; overflow: hidden; }
-        .main-link strong { font-size: 1rem; margin-bottom: 6px; line-height: 1.4; }
-        .main-link span { font-size: 0.7rem; opacity: 0.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: monospace; }
+        .main-link { flex-grow: 1; padding: 18px 22px; text-decoration: none; color: white; display: flex; flex-direction: column; }
+        .main-link strong { font-size: 0.95rem; line-height: 1.2; }
+        .main-link span { display: none; }
 
-        .side-actions { display: flex; padding-right: 20px; }
+        .side-actions { display: flex; padding-right: 15px; }
         .icon-btn {
-            width: 42px; height: 42px; border-radius: 14px; display: flex; align-items: center; justify-content: center; 
-            background: rgba(255,255,255,0.06); color: white; border: 1px solid var(--glass-border); cursor: pointer; transition: 0.2s;
+            width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+            background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--glass-border); cursor: pointer; transition: 0.2s;
         }
         .copy-btn:hover { background: #4ade80; color: #0f172a; border-color: #4ade80; }
 
-        .sub-links {
-            background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--glass-border); padding: 15px 25px; display: flex; flex-direction: column; gap: 10px;
-        }
-        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: rgba(255,255,255,0.04); border-radius: 15px; }
-        .sub-item span { color: #94a3b8; font-size: 0.8rem; font-weight: 600; }
-        .sub-item .actions a { color: var(--accent-self); text-decoration: none; font-weight: 700; margin-right: 15px; font-size: 0.8rem; text-transform: uppercase; }
-        .sub-item .actions button { background: none; border: 1px solid rgba(0, 242, 254, 0.3); color: var(--accent-self); cursor: pointer; padding: 5px 12px; border-radius: 10px; font-size: 0.7rem; transition: 0.3s; }
-        .sub-item .actions button:hover { background: var(--accent-self); color: #0f172a; }
+        .sub-links { background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--glass-border); padding: 12px 20px; display: flex; flex-direction: column; gap: 8px; }
+        .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background: rgba(255,255,255,0.03); border-radius: 12px; }
+        .sub-item span { color: #94a3b8; font-size: 0.75rem; font-weight: 600; }
+        .sub-item .actions a { color: var(--accent-self); text-decoration: none; font-weight: 700; margin-right: 12px; font-size: 0.75rem; }
+        .sub-item .actions button { background: none; border: 1px solid rgba(0, 242, 254, 0.3); color: var(--accent-self); cursor: pointer; padding: 4px 10px; border-radius: 8px; font-size: 0.65rem; }
     </style>
 </head>
 <body>
@@ -119,17 +125,24 @@
         </div>
 
         <div class="section-group">
-            <div class="section-label label-self"><i class="fa-solid fa-star"></i> MY PRODUCTS</div>
+            <div class="section-header active" onclick="toggleSection(this)">
+                <div class="section-label label-self"><i class="fa-solid fa-star"></i> MY PRODUCTS</div>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
             <div class="link-grid" id="listSelf"></div>
         </div>
 
         <div class="section-group">
-            <div class="section-label label-other"><i class="fa-solid fa-layer-group"></i> REFERENCE RESOURCES</div>
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-label label-other"><i class="fa-solid fa-layer-group"></i> REFERENCE RESOURCES</div>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
             <div class="link-grid" id="listOther"></div>
         </div>
     </div>
 
     <script>
+        // Particle Background Logic
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -145,13 +158,14 @@
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
         initCanvas(); for(let i=0; i<70; i++) particles.push(new Particle()); animate();
 
+        // Database
         const confLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.conf";
         const sgLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.sgmodule";
 
         const db = {
             self: [
                 { title: "All in one (ProMax Config)", special: true },
-                { title: "YouTube Ads Block & Premium Unlocked", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/All%20IN%20ONE(v1.0).sgmodule" },
+                { title: "Locket Gold (NDTT Edition)", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/modules/main/LOCKET/Locket_NDTT.sgmodule" },
                 { title: "YouTube, Spotify & Locket Gold Pack", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
             ],
             other: [
@@ -162,6 +176,7 @@
             ]
         };
 
+        // Render Logic
         function render() {
             ['self', 'other'].forEach(type => {
                 const container = document.getElementById(`list${type.charAt(0).toUpperCase() + type.slice(1)}`);
@@ -169,12 +184,7 @@
                     if (item.special) {
                         return `
                         <div class="link-btn-item">
-                            <div class="btn-content">
-                                <div class="main-link">
-                                    <strong style="color:var(--accent-self)">${item.title}</strong>
-                                    <span>Surge / Shadowrocket Config Files</span>
-                                </div>
-                            </div>
+                            <div class="btn-content"><div class="main-link"><strong style="color:var(--accent-self)">${item.title}</strong></div></div>
                             <div class="sub-links">
                                 <div class="sub-item"><span>FILE .CONF</span><div class="actions"><a href="${confLink}" target="_blank">MỞ</a><button onclick="copy('${confLink}', this)">COPY</button></div></div>
                                 <div class="sub-item"><span>FILE .SGMODULE</span><div class="actions"><a href="${sgLink}" target="_blank">MỞ</a><button onclick="copy('${sgLink}', this)">COPY</button></div></div>
@@ -184,24 +194,25 @@
                     return `
                     <div class="link-btn-item">
                         <div class="btn-content">
-                            <a href="${item.url}" target="_blank" class="main-link">
-                                <strong>${item.title}</strong>
-                                <span>${item.url}</span>
-                            </a>
-                            <div class="side-actions">
-                                <button class="icon-btn copy-btn" onclick="copy('${item.url}', this)"><i class="fa-regular fa-copy"></i></button>
-                            </div>
+                            <a href="${item.url}" target="_blank" class="main-link"><strong>${item.title}</strong></a>
+                            <div class="side-actions"><button class="icon-btn copy-btn" onclick="copy('${item.url}', this)"><i class="fa-regular fa-copy"></i></button></div>
                         </div>
                     </div>`;
                 }).join('');
             });
         }
 
+        // Toggle Section
+        function toggleSection(header) {
+            header.classList.toggle('active');
+        }
+
+        // Copy Function
         function copy(text, btn) {
             navigator.clipboard.writeText(text);
             const original = btn.innerHTML;
-            btn.innerHTML = 'COPIED';
-            setTimeout(() => { btn.innerHTML = original; }, 1500);
+            btn.innerHTML = '<span style="font-size: 0.6rem; font-weight: 800;">OK</span>';
+            setTimeout(() => { btn.innerHTML = original; }, 1000);
         }
 
         render();
