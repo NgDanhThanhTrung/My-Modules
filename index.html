@@ -1,222 +1,126 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Modules | Nguyễn Danh Thành Trung</title>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modules | NDTT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-bg: #0f172a;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-self: #00f2fe;
-            --accent-other: #a855f7;
-            --accent-warning: #fbbf24;
-            --text-color: #f8fafc;
-        }
-
+        :root { --p-bg: #0f172a; --g-bg: rgba(255,255,255,0.03); --g-bd: rgba(255,255,255,0.1); --ac-s: #00f2fe; --ac-o: #a855f7; --ac-w: #fbbf24; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--primary-bg); color: var(--text-color); min-height: 100vh; display: flex; justify-content: center; padding: 60px 15px; overflow-x: hidden; }
-        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-
+        body { background: var(--p-bg); color: #f8fafc; min-height: 100vh; display: flex; justify-content: center; padding: 60px 15px; overflow-x: hidden; }
+        #particles { position: fixed; top: 0; left: 0; z-index: -1; }
         .wrapper { width: 100%; max-width: 650px; z-index: 1; }
-        
         .profile { text-align: center; margin-bottom: 30px; }
-        .header-title { font-weight: 800; font-size: 2.2rem; background: linear-gradient(to right, #00f2fe, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
+        .header-title { font-weight: 800; font-size: 2.2rem; background: linear-gradient(to right, #00f2fe, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .header-sub { opacity: 0.6; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* Style cho phần Lưu ý */
-        .notice-card {
-            background: rgba(251, 191, 36, 0.05);
-            border: 1px solid rgba(251, 191, 36, 0.2);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-        }
-        .notice-title { color: var(--accent-warning); font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; text-transform: uppercase; }
+        .notice-card { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.2); border-radius: 20px; padding: 20px; margin-bottom: 40px; backdrop-filter: blur(10px); }
+        .notice-title { color: var(--ac-w); font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
         .notice-content { font-size: 0.85rem; line-height: 1.6; color: #cbd5e1; list-style: none; }
-        .notice-content li { margin-bottom: 5px; display: flex; gap: 8px; }
-        .notice-content li::before { content: "•"; color: var(--accent-warning); }
-
-        /* Accordion Styles */
-        .section-group { margin-bottom: 20px; }
-        
-        .section-header {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 20px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-            backdrop-filter: blur(10px);
-        }
-        .section-header:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255,255,255,0.3); }
-
-        .section-label { 
-            font-weight: 800; display: flex; align-items: center; 
-            gap: 12px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;
-        }
-        .label-self { color: var(--accent-self); }
-        .label-other { color: var(--accent-other); }
-
-        .chevron { transition: transform 0.3s ease; opacity: 0.5; }
-        .active .chevron { transform: rotate(180deg); opacity: 1; }
-
-        /* Nội dung ẩn hiện */
-        .link-grid { 
-            display: none; 
-            flex-direction: column; 
-            gap: 12px; 
-            padding: 15px 5px; 
-            animation: fadeIn 0.4s ease;
-        }
+        .notice-content li::before { content: "•"; color: var(--ac-w); margin-right: 8px; }
+        .section-header { background: var(--g-bg); border: 1px solid var(--g-bd); border-radius: 20px; padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); transition: 0.3s; margin-bottom: 20px; }
+        .section-label { font-weight: 800; display: flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
+        .label-self { color: var(--ac-s); } .label-other { color: var(--ac-o); }
+        .chevron { transition: 0.3s; opacity: 0.5; } .active .chevron { transform: rotate(180deg); opacity: 1; }
+        .link-grid { display: none; flex-direction: column; gap: 12px; padding: 0 5px 20px 5px; animation: fadeIn 0.4s; }
         .active + .link-grid { display: flex; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Link Item Styles */
-        .link-btn-item {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 18px; 
-            overflow: hidden; transition: 0.3s;
-        }
-        .link-btn-item:hover { background: rgba(255, 255, 255, 0.05); transform: translateX(5px); }
-
-        .btn-content { display: flex; align-items: center; width: 100%; }
-        .main-link { flex-grow: 1; padding: 18px 22px; text-decoration: none; color: white; display: flex; flex-direction: column; }
-        .main-link strong { font-size: 0.95rem; line-height: 1.2; }
-        .main-link span { display: none; }
-
-        .side-actions { display: flex; padding-right: 15px; }
-        .icon-btn {
-            width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; 
-            background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--glass-border); cursor: pointer; transition: 0.2s;
-        }
-        .copy-btn:hover { background: #4ade80; color: #0f172a; border-color: #4ade80; }
-
-        .sub-links { background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--glass-border); padding: 12px 20px; display: flex; flex-direction: column; gap: 8px; }
+        .link-btn-item { background: rgba(255,255,255,0.02); border: 1px solid var(--g-bd); border-radius: 18px; overflow: hidden; transition: 0.3s; }
+        .link-btn-item:hover { background: rgba(255,255,255,0.05); transform: translateX(5px); }
+        .main-link { flex-grow: 1; padding: 18px 22px; text-decoration: none; color: #fff; font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 12px; }
+        .main-link i { font-size: 1.1rem; filter: drop-shadow(0 0 5px currentColor); }
+        .icon-btn { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--g-bd); cursor: pointer; margin-right: 15px; }
+        .sub-links { background: rgba(0,0,0,0.2); border-top: 1px solid var(--g-bd); padding: 12px 20px; display: flex; flex-direction: column; gap: 8px; }
         .sub-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background: rgba(255,255,255,0.03); border-radius: 12px; }
         .sub-item span { color: #94a3b8; font-size: 0.75rem; font-weight: 600; }
-        .sub-item .actions a { color: var(--accent-self); text-decoration: none; font-weight: 700; margin-right: 12px; font-size: 0.75rem; }
-        .sub-item .actions button { background: none; border: 1px solid rgba(0, 242, 254, 0.3); color: var(--accent-self); cursor: pointer; padding: 4px 10px; border-radius: 8px; font-size: 0.65rem; }
+        .actions a, .actions button { color: var(--ac-s); text-decoration: none; font-weight: 700; font-size: 0.75rem; background: none; border: 1px solid rgba(0,242,254,0.3); padding: 4px 10px; border-radius: 8px; cursor: pointer; margin-left: 8px; transition: 0.2s; }
     </style>
 </head>
 <body>
-
     <canvas id="particles"></canvas>
-
     <div class="wrapper">
         <div class="profile">
             <h1 class="header-title">Nguyễn Danh Thành Trung</h1>
             <p class="header-sub">PROXY CONFIG & MODULES</p>
         </div>
-
         <div class="notice-card">
-            <div class="notice-title"><i class="fa-solid fa-circle-exclamation"></i> Lưu ý quan trọng</div>
-            <ul class="notice-content">
-                <li>Muốn sử dụng premium thì phải bật VPN trong ShadowRocket.</li>
-                <li>Không dùng nữa thì tắt đi để tránh hao pin và nóng máy.</li>
-            </ul>
+            <div class="notice-title"><i class="fa-solid fa-circle-exclamation"></i> LƯU Ý QUAN TRỌNG</div>
+            <ul class="notice-content"><li>Bật VPN trong ShadowRocket để dùng Premium.</li><li>Tắt khi không dùng để tránh nóng máy.</li></ul>
         </div>
-
-        <div class="section-group">
-            <div class="section-header active" onclick="toggleSection(this)">
-                <div class="section-label label-self"><i class="fa-solid fa-star"></i> MY PRODUCTS</div>
-                <i class="fa-solid fa-chevron-down chevron"></i>
-            </div>
-            <div class="link-grid" id="listSelf"></div>
-        </div>
-
-        <div class="section-group">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-label label-other"><i class="fa-solid fa-layer-group"></i> REFERENCE RESOURCES</div>
-                <i class="fa-solid fa-chevron-down chevron"></i>
-            </div>
-            <div class="link-grid" id="listOther"></div>
-        </div>
+        <div id="sections"></div>
     </div>
 
     <script>
-        // Particle Background Logic
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function initCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5; this.speedX = Math.random() * 0.4 - 0.2; this.speedY = Math.random() * 0.4 - 0.2; this.opacity = Math.random() * 0.4;
-            }
-            update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0; }
-            draw() { ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
-        }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-        initCanvas(); for(let i=0; i<70; i++) particles.push(new Particle()); animate();
-
-        // Database
-        const confLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.conf";
-        const sgLink = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.sgmodule";
-
+        const conf = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.conf";
+        const sg = "https://raw.githubusercontent.com/NgDanhThanhTrung/AllInOne_ProMax/refs/heads/main/AllInOne_ProMax.sgmodule";
+        
         const db = {
             self: [
-                { title: "All in one (ProMax Config)", special: true },
-                { title: "Locket Gold (NDTT Edition)", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/modules/main/LOCKET/Locket_NDTT.sgmodule" },
-                { title: "YouTube, Spotify & Locket Gold Pack", url: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
+                { t: "All in one (ProMax Config)", sp: 1 }, 
+                { t: "Locket Gold (NDTT Edition)", u: "https://raw.githubusercontent.com/NgDanhThanhTrung/modules/main/LOCKET/Locket_NDTT.sgmodule" }, 
+                { t: "YouTube, Spotify & Locket Pack", u: "https://raw.githubusercontent.com/NgDanhThanhTrung/allinone/refs/heads/main/ALL_IN_ONE.sgmobile" }
             ],
             other: [
-                { title: "Spotify Premium Module", url: "https://raw.githubusercontent.com/quocchienn/1in1/refs/heads/main/Spotify.module" },
-                { title: "Locket Gold (Fix iOS 26.0)", url: "https://raw.githubusercontent.com/trickerchannel/shadowrocket/refs/heads/main/LocketGold.sgmodule" },
-                { title: "Config Youtube PIP & Fix", url: "https://raw.githubusercontent.com/quocchienn/YouTubePIP/refs/heads/YouTube%2B%2B/YouTubefix3.conf" },
-                { title: "Locket Gold Crack Module", url: "https://raw.githubusercontent.com/quocchienn/lockcrack/refs/heads/module/Locket_Gold.sgmodule" }
+                { t: "Spotify Premium Module", u: "https://raw.githubusercontent.com/quocchienn/1in1/refs/heads/main/Spotify.module" }, 
+                { t: "Locket Gold (Fix iOS 26.0)", u: "https://raw.githubusercontent.com/trickerchannel/shadowrocket/refs/heads/main/LocketGold.sgmodule" }, 
+                { t: "Config Youtube PIP & Fix", u: "https://raw.githubusercontent.com/quocchienn/YouTubePIP/refs/heads/YouTube%2B%2B/YouTubefix3.conf" }
             ]
         };
 
-        // Render Logic
-        function render() {
-            ['self', 'other'].forEach(type => {
-                const container = document.getElementById(`list${type.charAt(0).toUpperCase() + type.slice(1)}`);
-                container.innerHTML = db[type].map((item) => {
-                    if (item.special) {
-                        return `
+        // Ưu tiên kiểm tra các từ khóa tổng hợp trước
+        const getInfo = (t) => {
+            const s = t.toLowerCase();
+            // Nếu là gói tổng hợp (Pack hoặc All in one)
+            if (s.includes('pack') || s.includes('all in one')) return { c: 'fa-solid fa-box-archive', col: '#00f2fe' };
+            
+            // Nếu là ứng dụng đơn lẻ
+            if (s.includes('spotify')) return { c: 'fa-brands fa-spotify', col: '#1DB954' };
+            if (s.includes('youtube')) return { c: 'fa-brands fa-youtube', col: '#FF0000' };
+            if (s.includes('locket')) return { c: 'fa-solid fa-heart', col: '#FFB800' };
+            
+            return { c: 'fa-solid fa-link', col: '#94a3b8' };
+        };
+
+        // Particles
+        const canvas = document.getElementById('particles'), ctx = canvas.getContext('2d');
+        let pts = [];
+        const init = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+        class P {
+            constructor() { Object.assign(this, { x: Math.random()*canvas.width, y: Math.random()*canvas.height, s: Math.random()*1.5, sx: Math.random()*0.4-0.2, sy: Math.random()*0.4-0.2, o: Math.random()*0.4 }); }
+            up() { this.x += this.sx; this.y += this.sy; if(this.x>canvas.width) this.x=0; if(this.y>canvas.height) this.y=0; }
+            dr() { ctx.fillStyle = `rgba(255,255,255,${this.o})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, 7); ctx.fill(); }
+        }
+        const loop = () => { ctx.clearRect(0,0,canvas.width,canvas.height); pts.forEach(p=>{p.up();p.dr();}); requestAnimationFrame(loop); };
+        init(); for(let i=0;i<70;i++) pts.push(new P()); loop();
+
+        const render = () => {
+            const wrap = document.getElementById('sections');
+            wrap.innerHTML = Object.entries(db).map(([k, v]) => `
+                <div class="section-group">
+                    <div class="section-header ${k==='self'?'active':''}" onclick="this.classList.toggle('active')">
+                        <div class="section-label label-${k}"><i class="fa-solid fa-${k==='self'?'star':'layer-group'}"></i> ${k.toUpperCase()} PRODUCTS</div>
+                        <i class="fa-solid fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="link-grid">${v.map(i => {
+                        const info = getInfo(i.t);
+                        return i.sp ? `
                         <div class="link-btn-item">
-                            <div class="btn-content"><div class="main-link"><strong style="color:var(--accent-self)">${item.title}</strong></div></div>
+                            <div class="main-link" style="color:var(--ac-s)"><i class="${info.c}" style="color:${info.col}"></i> ${i.t}</div>
                             <div class="sub-links">
-                                <div class="sub-item"><span>FILE .CONF</span><div class="actions"><a href="${confLink}" target="_blank">MỞ</a><button onclick="copy('${confLink}', this)">COPY</button></div></div>
-                                <div class="sub-item"><span>FILE .SGMODULE</span><div class="actions"><a href="${sgLink}" target="_blank">MỞ</a><button onclick="copy('${sgLink}', this)">COPY</button></div></div>
+                                <div class="sub-item"><span>FILE .CONF</span><div class="actions"><a href="${conf}" target="_blank">MỞ</a><button onclick="cp('${conf}',this)">COPY</button></div></div>
+                                <div class="sub-item"><span>FILE .SGMODULE</span><div class="actions"><a href="${sg}" target="_blank">MỞ</a><button onclick="cp('${sg}',this)">COPY</button></div></div>
                             </div>
-                        </div>`;
-                    }
-                    return `
-                    <div class="link-btn-item">
-                        <div class="btn-content">
-                            <a href="${item.url}" target="_blank" class="main-link"><strong>${item.title}</strong></a>
-                            <div class="side-actions"><button class="icon-btn copy-btn" onclick="copy('${item.url}', this)"><i class="fa-regular fa-copy"></i></button></div>
-                        </div>
-                    </div>`;
-                }).join('');
-            });
-        }
-
-        // Toggle Section
-        function toggleSection(header) {
-            header.classList.toggle('active');
-        }
-
-        // Copy Function
-        function copy(text, btn) {
-            navigator.clipboard.writeText(text);
-            const original = btn.innerHTML;
-            btn.innerHTML = '<span style="font-size: 0.6rem; font-weight: 800;">OK</span>';
-            setTimeout(() => { btn.innerHTML = original; }, 1000);
-        }
-
-        render();
-        window.onresize = initCanvas;
+                        </div>` : `
+                        <div class="link-btn-item">
+                            <div class="btn-content">
+                                <a href="${i.u}" target="_blank" class="main-link"><i class="${info.c}" style="color:${info.col}"></i> ${i.t}</a>
+                                <button class="icon-btn" onclick="cp('${i.u}',this)"><i class="fa-regular fa-copy"></i></button>
+                            </div>
+                        </div>`}).join('')}</div>
+                </div>`).join('');
+        };
+        const cp = (t, b) => { navigator.clipboard.writeText(t); const old = b.innerHTML; b.innerHTML = 'OK'; setTimeout(() => b.innerHTML = old, 1000); };
+        render(); window.onresize = init;
     </script>
 </body>
 </html>
